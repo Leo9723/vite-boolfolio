@@ -1,9 +1,14 @@
 <script>
 import axios from 'axios';
+import ProjectCard from './ProjectCard.vue';
 
 
 export default {
     name: 'ProjectMain',
+
+    components:{
+    ProjectCard,
+  },
     data(){
         return{
             projects: [],
@@ -22,7 +27,7 @@ export default {
                     this.currentPage = response.data.projects.current_page
                     this.lastPage = response.data.projects.last_page
                     this.loading = false;
-                    
+                    console.log(this.projects)
 
                 }
                 else{
@@ -46,35 +51,17 @@ export default {
                 <div class="col-12">
                         Boolfolio
                 </div>
-                <div class="col-12">
+                <div class="col-12 d-flex flex-column align-items-center">
                     <div v-if="loading">
                         <div class="loader">
                         </div> 
                     </div>
                     <div v-else class="d-flex flex-wrap col-12">
-                        <div class="card my-3 col-3 m-2" v-for="project in projects" :key="project.id">
-                            <div class="card-body">
-                                <div class="card-img-top">
-                                    <img :src="project.cover_image != null ? `${baseUrl}/storage/app/${project.cover_image}` : 'https://picsum.photos/200/300'" alt="">
-                                </div>
-                                <div class="card-title">
-                                    <h5>{{ project.title }}</h5>
-                                </div>
-                                <div class="card-text">
-                                    <h5>{{ project.description }}</h5>
-                                    
-                                    <em v-if="project.type">Tipologia: {{ project.type.name }}</em>
-                                    <ul v-if="project.technologies">
-                                        <li v-for="technology in project.technologies">
-                                            {{ technology.name }}
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a href="">
-                                    Leggi
-                                </a>
-                            </div>
-                        </div>
+
+                            <ProjectCard class="card my-3 col-3 m-2" v-for="(project, index) in projects" :project="project" :key="project.id" />
+
+
+                    </div>
                         <div class="row">
                             <div class="col-12">
                                 <nav>
@@ -98,7 +85,6 @@ export default {
                                 </nav>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
