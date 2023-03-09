@@ -17,7 +17,7 @@ export default {
     <div>
         <div class="card-body">
                                 <div class="card-img-top">
-                                    <img :src="project.cover_image != null ? `${baseUrl}/storage/app/${project.cover_image}` : 'https://picsum.photos/200/300'" alt="">
+                                    <img :src="project.cover_image != null ? `${baseUrl}/storage/${project.cover_image}` : 'https://picsum.photos/200/300'" alt="">
                                 </div>
                                 <div class="card-title">
                                     <h5>{{ project.title }}</h5>
@@ -27,7 +27,7 @@ export default {
                                     
                                     <em v-if="project.type">Tipologia: {{ project.type.name }}</em>
                                     <ul v-if="project.technologies">
-                                        <li v-for="technology in project.technologies">
+                                        <li v-for="technology, index in project.technologies" :key="index">
                                             {{ technology.name }}
                                         </li>
                                     </ul>

@@ -27,7 +27,6 @@ export default {
                     this.currentPage = response.data.projects.current_page
                     this.lastPage = response.data.projects.last_page
                     this.loading = false;
-                    console.log(this.projects)
 
                 }
                 else{
