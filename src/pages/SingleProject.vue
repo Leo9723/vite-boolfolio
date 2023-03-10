@@ -15,6 +15,7 @@ export default {
     mounted(){
         this.loading = true;
         axios.get(`${this.store.baseUrl}/api/projects/${this.$route.params.id}`).then((response) => {
+            console.log(response.data.project)
             this.project = response.data.project
             this.loading = false
         })
@@ -23,9 +24,9 @@ export default {
 </script>
 
 
-<template lang="">
+<template>
     <div>
-        DETTAGLIO POST
+        {{ project.title }}
     </div>
 </template>
 
