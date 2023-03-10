@@ -1,4 +1,6 @@
 <script>
+import { store } from '../store'
+
 export default {
     props: {
         project: Object,
@@ -6,7 +8,7 @@ export default {
     data(){
         return{
             projects: [],
-            baseUrl: 'http://127.0.0.1:8000',
+            store,
         }
     },
 }
@@ -17,7 +19,7 @@ export default {
     <div>
         <div class="card-body">
                                 <div class="card-img-top">
-                                    <img :src="project.cover_image != null ? `${baseUrl}/storage/${project.cover_image}` : 'https://picsum.photos/200/300'" alt="">
+                                    <img :src="project.cover_image != null ? `${this.store.baseUrl}/storage/${project.cover_image}` : 'https://picsum.photos/200/300'" alt="">
                                 </div>
                                 <div class="card-title">
                                     <h5>{{ project.title }}</h5>
@@ -32,14 +34,15 @@ export default {
                                         </li>
                                     </ul>
                                 </div>
-                                <a href="">
-                                    Leggi
-                                </a>
+                                <router-link :to="{ name: 'single_project', params: { id: project.id } }" class="btn btn-sm btn-success">Leggi</router-link>
                             </div>
     </div>
 </template>
 
 
-<style lang="scss">
-    
+<style lang="scss" scoped>
+    img{
+        width: 200px;
+        height: 300px;
+    }
 </style>
