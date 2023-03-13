@@ -9,6 +9,10 @@ export default {
                 routeName: 'homepage',
                 },
                 {
+                label: 'Contatti',
+                routeName: 'contacts',
+                },
+                {
                 label: 'list',
                 routeName: 'project_list',
                 }
